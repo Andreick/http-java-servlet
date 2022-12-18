@@ -1,6 +1,8 @@
 package com.andreick.manager.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,24 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.andreick.manager.data.Company;
 import com.andreick.manager.repo.FakeDatabase;
 
-@WebServlet("/company")
-public class NewCompanyServlet extends HttpServlet {
+@WebServlet("/companies")
+public class CompanyListServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("Registering new company");
-
-        String newCompanyName = request.getParameter("name");
-        Company newCompany = new Company(newCompanyName);
-
         FakeDatabase db = new FakeDatabase();
-        db.add(newCompany);
+        List<Company> companies = db.getCompanies();
 
-        RequestDispatcher reqDisp = request.getRequestDispatcher("/newCompany.jsp");
-        request.setAttribute("companyName", newCompanyName);
+        RequestDispatcher reqDisp = request.getRequestDispatcher("/companies.jsp");
+        request.setAttribute("companies", companies);
         reqDisp.forward(request, response);
     }
 
