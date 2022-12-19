@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,9 +40,8 @@ public class NewCompanyServlet extends HttpServlet {
         FakeDatabase db = new FakeDatabase();
         db.add(newCompany);
 
-        RequestDispatcher reqDisp = request.getRequestDispatcher("/newCompany.jsp");
-        request.setAttribute("companyName", newCompany.getName());
-        reqDisp.forward(request, response);
+        request.setAttribute("newCompanyName", newCompany.getName());
+        response.sendRedirect("companies");
     }
 
 }

@@ -11,11 +11,14 @@
 <title>Companies</title>
 </head>
 <body>
+  <c:if test="${not empty newCompanyName}">
+    Company ${newCompanyName} successfully registered!<br />
+  </c:if>
   Companies list:
   <br />
   <ul>
     <c:forEach items="${companies}" var="company">
-      <li>${company.name} - <fmt:formatDate
+      <li>${company.name}&nbsp;-&nbsp;<fmt:formatDate
           value="${company.startDate}" pattern="dd/MM/yyyy" /></li>
     </c:forEach>
   </ul>
