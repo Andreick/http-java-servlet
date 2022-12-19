@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
   pageEncoding="ISO-8859-1"%>
-<%
-//scriplet
-String companyName = (String) request.getAttribute("companyName");
-System.out.println(companyName);
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>New Company Response</title>
+<title>New Company</title>
 </head>
 <body>
-  Company
-  <%=companyName%>
-  successfully registered!
+  <c:if test="${not empty companyName}">
+    Company ${companyName} successfully registered!
+  </c:if>
+  <c:if test="${empty companyName}">
+    No registered company!
+  </c:if>
 </body>
 </html>

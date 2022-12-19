@@ -1,6 +1,10 @@
 package com.andreick.manager.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,14 +25,24 @@ public class NewCompanyServlet extends HttpServlet {
 
         System.out.println("Registering new company");
 
-        String newCompanyName = request.getParameter("name");
-        Company newCompany = new Company(newCompanyName);
+        String paramName = request.getParameter("name");
+        String paramStartDate = request.getParameter("startDate");
+
+        Date startDate;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            startDate = formatter.parse(paramStartDate);
+        } catch (ParseException e) {
+            throw new ServletException(e);
+        }
+
+        Company newCompany = new Company(paramName, startDate);
 
         FakeDatabase db = new FakeDatabase();
         db.add(newCompany);
 
         RequestDispatcher reqDisp = request.getRequestDispatcher("/newCompany.jsp");
-        request.setAttribute("companyName", newCompanyName);
+        request.setAttribute("companyName", newCompany.getName());
         reqDisp.forward(request, response);
     }
 

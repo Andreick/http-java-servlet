@@ -2,6 +2,7 @@ package com.andreick.manager.repo;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import com.andreick.manager.data.Company;
@@ -11,8 +12,8 @@ public class FakeDatabase {
     private static List<Company> companies = new ArrayList<>();
 
     static {
-        Company c1 = new Company("Alura");
-        Company c2 = new Company("Caelum");
+        Company c1 = new Company("Alura", new Date());
+        Company c2 = new Company("Caelum", new Date());
         companies.add(c1);
         companies.add(c2);
     }
