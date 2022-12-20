@@ -1,7 +1,6 @@
 package com.andreick.manager.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,19 +12,21 @@ import javax.servlet.http.HttpServletResponse;
 import com.andreick.manager.data.Company;
 import com.andreick.manager.repo.FakeDatabase;
 
-@WebServlet("/companies")
-public class CompanyListServlet extends HttpServlet {
-
+@WebServlet("/company")
+public class ShowCompanyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    protected void service(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        FakeDatabase db = new FakeDatabase();
-        List<Company> companies = db.getCompanies();
+        String paramId = request.getParameter("id");
+        int id = Integer.parseInt(paramId);
 
-        RequestDispatcher reqDisp = request.getRequestDispatcher("/companies.jsp");
-        request.setAttribute("companies", companies);
+        FakeDatabase db = new FakeDatabase();
+        Company company = db.getCompanyById(id);
+
+        RequestDispatcher reqDisp = request.getRequestDispatcher("/editCompanyForm.jsp");
+        request.setAttribute("company", company);
         reqDisp.forward(request, response);
     }
 

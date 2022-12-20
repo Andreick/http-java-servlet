@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
+<c:url value="/company" var="editRoute" />
+<c:url value="/delete-company" var="deleteRoute" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +22,10 @@
   <ul>
     <c:forEach items="${companies}" var="company">
       <li>${company.name}&nbsp;-&nbsp;<fmt:formatDate
-          value="${company.startDate}" pattern="dd/MM/yyyy" /></li>
+          value="${company.startDate}" pattern="dd/MM/yyyy" />
+          <a href="${editRoute}?id=${company.id}">edit</a>
+          <a href="${deleteRoute}?id=${company.id}">delete</a>
+      </li>
     </c:forEach>
   </ul>
 </body>

@@ -14,18 +14,19 @@ import javax.servlet.http.HttpServletResponse;
 import com.andreick.manager.data.Company;
 import com.andreick.manager.repo.FakeDatabase;
 
-@WebServlet("/new-company")
-public class NewCompanyServlet extends HttpServlet {
-
+@WebServlet("/edit-company")
+public class EditCompanyServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("Registering new company");
+        System.out.println("Editing company");
 
+        String paramId = request.getParameter("id");
         String paramName = request.getParameter("name");
         String paramStartDate = request.getParameter("startDate");
+        Long id = Long.valueOf(paramId);
 
         Date startDate;
         try {
@@ -35,12 +36,10 @@ public class NewCompanyServlet extends HttpServlet {
             throw new ServletException(e);
         }
 
-        Company newCompany = new Company(paramName, startDate);
-
         FakeDatabase db = new FakeDatabase();
-        db.create(newCompany);
+        Company company = new Company(id, paramName, startDate);
+        db.update(company);
 
-        request.setAttribute("newCompanyName", newCompany.getName());
         response.sendRedirect("companies");
     }
 
