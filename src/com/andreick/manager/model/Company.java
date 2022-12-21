@@ -1,4 +1,4 @@
-package com.andreick.manager.data;
+package com.andreick.manager.model;
 
 import java.util.Date;
 

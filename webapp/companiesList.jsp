@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
   pageEncoding="ISO-8859-1"%>
-<%@ page import="com.andreick.manager.data.Company"%>
+<%@ page import="com.andreick.manager.model.Company"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:url value="/company" var="editRoute" />
+<c:url value="/show-company" var="editRoute" />
 <c:url value="/delete-company" var="deleteRoute" />
 
 <!DOCTYPE html>

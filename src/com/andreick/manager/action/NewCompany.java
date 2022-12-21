@@ -1,4 +1,4 @@
-package com.andreick.manager.servlet;
+package com.andreick.manager.action;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -6,21 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.andreick.manager.data.Company;
-import com.andreick.manager.repo.FakeDatabase;
+import com.andreick.manager.model.Company;
+import com.andreick.manager.model.FakeDatabase;
 
-@WebServlet("/new-company")
-public class NewCompanyServlet extends HttpServlet {
+public class NewCompany {
 
-    private static final long serialVersionUID = 1L;
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         System.out.println("Registering new company");
 
@@ -41,7 +35,7 @@ public class NewCompanyServlet extends HttpServlet {
         db.create(newCompany);
 
         request.setAttribute("newCompanyName", newCompany.getName());
-        response.sendRedirect("companies");
+        response.sendRedirect("list-companies");
     }
 
 }
