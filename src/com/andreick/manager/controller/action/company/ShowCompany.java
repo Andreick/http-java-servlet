@@ -1,18 +1,19 @@
-package com.andreick.manager.action;
+package com.andreick.manager.controller.action.company;
 
-import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.andreick.manager.controller.action.Action;
+import com.andreick.manager.controller.action.ActionResult;
+import com.andreick.manager.controller.action.ActionType;
 import com.andreick.manager.model.Company;
 import com.andreick.manager.model.FakeDatabase;
 
-public class ShowCompany {
+public class ShowCompany implements Action {
 
-    public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    public ActionResult run(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
         String paramId = request.getParameter("id");
         int id = Integer.parseInt(paramId);
@@ -20,9 +21,8 @@ public class ShowCompany {
         FakeDatabase db = new FakeDatabase();
         Company company = db.getCompanyById(id);
 
-        RequestDispatcher reqDisp = request.getRequestDispatcher("/editCompanyForm.jsp");
         request.setAttribute("company", company);
-        reqDisp.forward(request, response);
+        return new ActionResult(ActionType.FOWARD, "editCompanyForm.jsp");
     }
 
 }

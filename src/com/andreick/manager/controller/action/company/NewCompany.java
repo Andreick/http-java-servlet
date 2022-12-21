@@ -1,6 +1,5 @@
-package com.andreick.manager.action;
+package com.andreick.manager.controller.action.company;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,12 +8,17 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.andreick.manager.controller.action.Action;
+import com.andreick.manager.controller.action.ActionResult;
+import com.andreick.manager.controller.action.ActionType;
+import com.andreick.manager.controller.route.company.CompanyRoute;
 import com.andreick.manager.model.Company;
 import com.andreick.manager.model.FakeDatabase;
 
-public class NewCompany {
+public class NewCompany implements Action {
 
-    public void run(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    public ActionResult run(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 
         System.out.println("Registering new company");
 
@@ -35,7 +39,7 @@ public class NewCompany {
         db.create(newCompany);
 
         request.setAttribute("newCompanyName", newCompany.getName());
-        response.sendRedirect("list-companies");
+        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getPath());
     }
 
 }
