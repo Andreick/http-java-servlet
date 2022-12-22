@@ -15,7 +15,6 @@ public class CompanyRouter implements Router {
 
     @Override
     public void putActions(Map<String, Action> actionMap) {
-
         actionMap.put(CompanyRoute.LIST.getPath(), new ListCompanies());
         actionMap.put(CompanyRoute.SHOW.getPath(), new ShowCompany());
         actionMap.put(CompanyRoute.NEW.getPath(), new NewCompany());

@@ -8,14 +8,16 @@ import java.util.List;
 
 public class FakeDatabase {
 
-    private static List<Company> companies = new ArrayList<>();
     private static Long sequentialId = 0L;
+    private static List<Company> companies = new ArrayList<>();
+    private static List<User> users = new ArrayList<>();
 
     static {
-        Company c1 = new Company(++sequentialId, "Alura", new Date());
-        Company c2 = new Company(++sequentialId, "Caelum", new Date());
-        companies.add(c1);
-        companies.add(c2);
+        companies.add(new Company(++sequentialId, "Alura", new Date()));
+        companies.add(new Company(++sequentialId, "Caelum", new Date()));
+
+        users.add(new User("root", "123"));
+        users.add(new User("user", "123"));
     }
 
     public List<Company> getCompanies() {
@@ -61,6 +63,15 @@ public class FakeDatabase {
             }
         }
         return numDeleted;
+    }
+
+    public User getAuthenticatedUser(String login, String password) {
+        for (User user : users) {
+            if (user.authenticate(login, password)) {
+                return user;
+            }
+        }
+        return null;
     }
 
 }
