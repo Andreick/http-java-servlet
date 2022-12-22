@@ -11,6 +11,7 @@
 <title>New Company Form</title>
 </head>
 <body>
+  <c:import url="logoutLink.jsp" />
   <form action="${newRoute}" method="POST">
     Name: <input type="text" name="name"> Start date: <input
       type="text" name="startDate"> <input type="submit">

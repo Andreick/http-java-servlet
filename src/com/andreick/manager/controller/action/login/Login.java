@@ -3,6 +3,7 @@ package com.andreick.manager.controller.action.login;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.andreick.manager.controller.action.Action;
 import com.andreick.manager.controller.action.ActionResult;
@@ -27,6 +28,8 @@ public class Login implements Action {
             return new ActionResult(ActionType.REDIRECT, LoginRoute.FORM.getPath());
         }
 
+        HttpSession session = request.getSession();
+        session.setAttribute("authenticatedUser", authenticatedUser);
         return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getPath());
     }
 

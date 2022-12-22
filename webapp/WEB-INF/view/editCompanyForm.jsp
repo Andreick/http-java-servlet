@@ -12,6 +12,7 @@
 <title>Edit Company Form</title>
 </head>
 <body>
+  <c:import url="logoutLink.jsp" />
   <form action="${editRoute}" method="POST">
     Name: <input type="text" name="name" value="${company.name}">
     Start date: <input type="text" name="startDate"

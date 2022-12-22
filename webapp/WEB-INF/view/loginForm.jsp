@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>New Company Form</title>
+<title>Login Form</title>
 </head>
 <body>
   <form action="${loginRoute}" method="POST">

@@ -15,6 +15,12 @@ public enum LoginRoute implements Route {
         public String getPath() {
             return "/login";
         }
+    },
+    LOGOUT {
+        @Override
+        public String getPath() {
+            return "/logout";
+        }
     };
 
 }
