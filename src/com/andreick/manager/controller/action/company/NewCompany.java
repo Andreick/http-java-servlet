@@ -4,7 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +17,7 @@ import com.andreick.manager.model.FakeDatabase;
 public class NewCompany implements Action {
 
     @Override
-    public ActionResult run(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public ActionResult run(HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("Registering new company");
 
@@ -30,7 +29,7 @@ public class NewCompany implements Action {
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             startDate = formatter.parse(paramStartDate);
         } catch (ParseException e) {
-            throw new ServletException(e);
+            return new ActionResult(ActionType.ERROR, e.getMessage());
         }
 
         Company newCompany = new Company(paramName, startDate);
@@ -39,7 +38,7 @@ public class NewCompany implements Action {
         db.create(newCompany);
 
         request.setAttribute("newCompanyName", newCompany.getName());
-        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getPath());
+        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getUrl());
     }
 
 }

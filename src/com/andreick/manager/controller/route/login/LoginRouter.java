@@ -12,9 +12,9 @@ public class LoginRouter implements Router {
 
     @Override
     public void putActions(Map<String, Action> actionMap) {
-        actionMap.put(LoginRoute.FORM.getPath(), new LoginForm());
-        actionMap.put(LoginRoute.LOGIN.getPath(), new Login());
-        actionMap.put(LoginRoute.LOGOUT.getPath(), new Logout());
+        actionMap.put(LoginRoute.FORM.getUrl(), new LoginForm());
+        actionMap.put(LoginRoute.LOGIN.getUrl(), new Login());
+        actionMap.put(LoginRoute.LOGOUT.getUrl(), new Logout());
     }
 
 }

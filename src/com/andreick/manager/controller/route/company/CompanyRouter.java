@@ -15,12 +15,12 @@ public class CompanyRouter implements Router {
 
     @Override
     public void putActions(Map<String, Action> actionMap) {
-        actionMap.put(CompanyRoute.LIST.getPath(), new ListCompanies());
-        actionMap.put(CompanyRoute.SHOW.getPath(), new ShowCompany());
-        actionMap.put(CompanyRoute.NEW.getPath(), new NewCompany());
-        actionMap.put(CompanyRoute.EDIT.getPath(), new EditCompany());
-        actionMap.put(CompanyRoute.DELETE.getPath(), new DeleteCompany());
-        actionMap.put(CompanyRoute.FORM.getPath(), new NewCompanyForm());
+        actionMap.put(CompanyRoute.LIST.getUrl(), new ListCompanies());
+        actionMap.put(CompanyRoute.SHOW.getUrl(), new ShowCompany());
+        actionMap.put(CompanyRoute.NEW.getUrl(), new NewCompany());
+        actionMap.put(CompanyRoute.EDIT.getUrl(), new EditCompany());
+        actionMap.put(CompanyRoute.DELETE.getUrl(), new DeleteCompany());
+        actionMap.put(CompanyRoute.FORM.getUrl(), new NewCompanyForm());
     }
 
 }

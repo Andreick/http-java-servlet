@@ -3,19 +3,19 @@ package com.andreick.manager.controller.action;
 public class ActionResult {
 
     private ActionType type;
-    private String path;
+    private String result;
 
-    public ActionResult(ActionType type, String path) {
+    public ActionResult(ActionType type, String result) {
         this.type = type;
-        this.path = path;
+        this.result = result;
     }
 
     public ActionType getType() {
         return type;
     }
 
-    public String getPath() {
-        return path;
+    public String getResult() {
+        return result;
     }
 
 }

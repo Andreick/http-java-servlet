@@ -1,6 +1,5 @@
 package com.andreick.manager.controller.action.login;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,7 +15,7 @@ import com.andreick.manager.model.User;
 public class Login implements Action {
 
     @Override
-    public ActionResult run(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public ActionResult run(HttpServletRequest request, HttpServletResponse response) {
 
         String paramLogin = request.getParameter("login");
         String paramPassword = request.getParameter("password");
@@ -25,12 +24,12 @@ public class Login implements Action {
         User authenticatedUser = db.getAuthenticatedUser(paramLogin, paramPassword);
 
         if (authenticatedUser == null) {
-            return new ActionResult(ActionType.REDIRECT, LoginRoute.FORM.getPath());
+            return new ActionResult(ActionType.REDIRECT, LoginRoute.FORM.getUrl());
         }
 
         HttpSession session = request.getSession();
         session.setAttribute("authenticatedUser", authenticatedUser);
-        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getPath());
+        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getUrl());
     }
 
 }

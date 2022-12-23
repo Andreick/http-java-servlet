@@ -6,19 +6,19 @@ public enum LoginRoute implements Route {
 
     FORM {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/login-form";
         }
     },
     LOGIN {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/login";
         }
     },
     LOGOUT {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/logout";
         }
     };

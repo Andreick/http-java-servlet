@@ -1,6 +1,5 @@
 package com.andreick.manager.controller.action.company;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +12,7 @@ import com.andreick.manager.model.FakeDatabase;
 public class DeleteCompany implements Action {
 
     @Override
-    public ActionResult run(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+    public ActionResult run(HttpServletRequest request, HttpServletResponse response) {
 
         System.out.println("Deleting company");
 
@@ -23,7 +22,7 @@ public class DeleteCompany implements Action {
         FakeDatabase db = new FakeDatabase();
         db.deleteCompanyById(id);
 
-        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getPath());
+        return new ActionResult(ActionType.REDIRECT, CompanyRoute.LIST.getUrl());
     }
 
 }

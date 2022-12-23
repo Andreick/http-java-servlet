@@ -6,37 +6,37 @@ public enum CompanyRoute implements Route {
 
     LIST {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/list-companies";
         }
     },
     SHOW {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/show-company";
         }
     },
     NEW {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/new-company";
         }
     },
     EDIT {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/edit-company";
         }
     },
     DELETE {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/delete-company";
         }
     },
     FORM {
         @Override
-        public String getPath() {
+        public String getUrl() {
             return "/company-form";
         }
     };
